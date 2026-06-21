@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>球探 · 信息专题</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #faeee7 0%, #f5d7c3 45%, #f3c9b3 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.6;
+            color: #2d2a24;
+        }
+
+        .magazine-card {
+            max-width: 880px;
+            width: 100%;
+            background: rgba(255, 253, 250, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 48px 48px 36px 36px;
+            box-shadow: 0 24px 48px -12px rgba(140, 80, 50, 0.35), 0 6px 14px rgba(0,0,0,0.04);
+            padding: 2.2rem 2rem 2.8rem;
+            transition: all 0.15s ease;
+        }
+
+        /* 杂志横幅 */
+        .hero-banner {
+            background: linear-gradient(102deg, #e8c7b0 0%, #dbb29a 100%);
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.4rem;
+            box-shadow: inset 0 -2px 0 rgba(255,245,235,0.5), 0 6px 12px -8px rgba(100,60,40,0.2);
+            text-align: center;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #2b1f17;
+            text-shadow: 0 1px 2px rgba(255, 235, 215, 0.5);
+            margin-bottom: 0.3rem;
+            word-break: keep-all;
+        }
+
+        .hero-banner p {
+            font-size: 1.2rem;
+            font-weight: 380;
+            color: #3e2e22;
+            background: rgba(255, 242, 230, 0.4);
+            display: inline-block;
+            padding: 0.25rem 1.4rem;
+            border-radius: 60px;
+            letter-spacing: 0.02em;
+            backdrop-filter: blur(4px);
+        }
+
+        /* 三段自然介绍 + 其他模块 */
+        .intro-grid {
+            margin: 0 0 1.8rem;
+        }
+
+        .intro-block {
+            background: #fffbf7;
+            border-radius: 24px;
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 1.4rem;
+            border: 1px solid rgba(230, 200, 180, 0.25);
+            box-shadow: 0 2px 6px rgba(170, 120, 80, 0.04);
+        }
+
+        .intro-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-block h2 {
+            font-size: 1.3rem;
+            font-weight: 520;
+            color: #3f2d1f;
+            margin-bottom: 0.6rem;
+            padding-left: 0.5rem;
+            border-left: 5px solid #cfaa8f;
+            letter-spacing: 0.02em;
+        }
+
+        .intro-block p {
+            margin-top: 0.2rem;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #3c342b;
+        }
+
+        .intro-block a {
+            color: #7a5b43;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 2px solid #dcbfaa;
+            transition: border 0.2s, background 0.15s;
+            padding: 0 0.08rem;
+        }
+
+        .intro-block a:hover {
+            border-bottom-color: #8f6b50;
+            background: #f6e8dd;
+            border-radius: 4px;
+        }
+
+        /* 特点、场景混合小卡片 */
+        .feature-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.8rem 0 2rem;
+        }
+
+        .feature-item {
+            background: #f7eee5;
+            border-radius: 60px 18px 18px 60px;
+            padding: 0.6rem 1.4rem 0.6rem 1.6rem;
+            flex: 1 0 200px;
+            border: 1px solid #e7d1be;
+            font-weight: 420;
+            color: #3d2d20;
+            box-shadow: 0 2px 6px rgba(150, 100, 70, 0.04);
+            font-size: 0.96rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-item::before {
+            content: "·";
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #ba8f74;
+            margin-right: 0.15rem;
+        }
+
+        /* FAQ摘要风格 */
+        .faq-mini {
+            background: #f4e6db;
+            border-radius: 24px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.6rem 0 1.2rem;
+            border-left: 6px solid #b98e73;
+        }
+
+        .faq-mini h3 {
+            font-size: 1.1rem;
+            font-weight: 520;
+            color: #2f2219;
+            margin-bottom: 0.3rem;
+        }
+
+        .faq-mini p {
+            font-size: 0.98rem;
+            color: #3d3229;
+        }
+
+        /* 页尾访问提示 */
+        .footer-note {
+            border-top: 2px dashed #dac0ae;
+            padding-top: 1.8rem;
+            margin-top: 1.8rem;
+            text-align: center;
+            font-size: 1.05rem;
+            color: #4b3b2e;
+        }
+
+        .footer-note a {
+            color: #6f4f38;
+            text-decoration: none;
+            font-weight: 540;
+            background: #f1e0d2;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            transition: background 0.2s, box-shadow 0.15s;
+            display: inline-block;
+            margin: 0 0.15rem;
+            border: 1px solid #dbbfaa;
+            box-shadow: 0 2px 4px rgba(100, 60, 30, 0.02);
+        }
+
+        .footer-note a:hover {
+            background: #e3ccb9;
+            box-shadow: 0 4px 10px rgba(130, 80, 50, 0.12);
+        }
+
+        .footer-note .soft-text {
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+            color: #6a594b;
+            letter-spacing: 0.01em;
+            opacity: 0.8;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            body { padding: 1rem 0.6rem; }
+            .magazine-card { padding: 1.6rem 1rem 2rem; border-radius: 32px; }
+            .hero-banner { padding: 1.2rem 1rem; }
+            .hero-banner h1 { font-size: 2rem; }
+            .hero-banner p { font-size: 1rem; padding: 0.2rem 1rem; }
+            .intro-block { padding: 1.2rem; }
+            .feature-item { flex: 1 0 100%; border-radius: 30px 12px 12px 30px; }
+            .footer-note { font-size: 0.95rem; }
+        }
+
+        @media (max-width: 400px) {
+            .hero-banner h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="magazine-card">
+        <!-- 首页横幅 -->
+        <div class="hero-banner">
+            <h1>球探</h1>
+            <p>信息 · 视野 · 日常</p>
+        </div>
+
+        <!-- 背景说明 + 三段自然介绍（切入角度：站点介绍与可信说明） -->
+        <div class="intro-grid">
+            <div class="intro-block">
+                <h2>从了解到熟悉</h2>
+                <p>提到<a href="https://h5-qiutan.com">球探</a>，很多人首先联想到的是资讯与动态。这个站点本身并非刻意包装的展示台，而更像一份为你整理的笔记——关于赛事、队伍以及数据背后的故事。它不追求浮夸的标签，只提供平实的浏览体验。了解一个平台，往往从它的日常质感开始。</p>
+            </div>
+
+            <div class="intro-block">
+                <h2>可靠的信息习惯</h2>
+                <p>网络上信息繁杂，我们更愿意相信那些结构清晰、更新稳定的来源。<a href="https://h5-qiutan.com">球探</a>的页面设计不堆积弹窗，也无需反复跳转，整体风格偏克制。信息密度适中，适合快速扫读。这种沉稳的界面语言，无形中建立了一种信任感——你不需要费力辨别哪些内容是真实的，因为它的呈现方式本身就足够坦白。</p>
+            </div>
+
+            <div class="intro-block">
+                <h2>熟悉的日常入口</h2>
+                <p>很多人把<a href="https://h5-qiutan.com">球探</a>放在浏览器书签栏，不是为了某一次特定的查找，而是习惯性地上去瞄一眼。就像翻阅一份每日简报，不必刻意记住什么，但心里有数。这种陪伴感，反而让信息来源变得更可靠。它不制造焦虑，也不过度渲染，只是安静地待在那里，等你需要的时候打开。</p>
+            </div>
+        </div>
+
+        <!-- 特点场景小卡片（非每次相同） -->
+        <div class="feature-wrap">
+            <span class="feature-item">信息结构直接，减少翻找</span>
+            <span class="feature-item">界面配色温和，长时间阅读不累</span>
+            <span class="feature-item">没有强制推送，浏览节奏自在</span>
+            <span class="feature-item">后台更新及时，避免陈旧信息</span>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <h3>常见问题 · 摘要</h3>
+            <p><strong>站点内容主要聚焦什么？</strong> 围绕与球类相关的数据、动态与观察，兼顾实用性与可读性，不刻意追逐热点，更注重持续输出有条理的信息。页面中的链接、列表、卡片都以内容本身为主，而非广告。</p>
+            <p style="margin-top: 0.5rem;"><strong>为什么值得日常留意？</strong> 信息更新稳定，版式一致，没有频繁变动的干扰元素，适合培养长期阅读习惯。</p>
+        </div>
+
+        <!-- 页尾访问提示 -->
+        <div class="footer-note">
+            <p>如果想亲自体验这种沉静又扎实的信息风格，不妨打开 <a href="https://h5-qiutan.com">球探</a>，在页面上随意逛逛。</p>
+            <div class="soft-text">—— 一本关于视野的在线笔记本 · 不打扰的陪伴 ——</div>
+        </div>
+    </div>
+</body>
+</html>
